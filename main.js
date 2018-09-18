@@ -16,8 +16,8 @@ console.log(articleEl);
     JavaScript, in the browser, automatically send the source
     event to the handler function for the event.
 */
-function handleSectionClick (event) {
-    console.log(event.target.innerHTML);
+function handleSectionClick (e) {
+    console.log(e.target.innerHTML);
 }
 
 for (var i = 0; i < articleEl.length; i++) {
@@ -54,8 +54,8 @@ header.addEventListener("mouseout", handleHeaderMouseOut)
  */
 var fieldEl = document.getElementById("keypress-input")
 
-fieldEl.addEventListener("keyup", function (event) {
-    outputEl.innerHTML = event.target.value
+fieldEl.addEventListener("keyup", function (e) {
+    outputEl.innerHTML = e.target.value
 })
 
 
@@ -72,7 +72,9 @@ fieldEl.addEventListener("keyup", function (event) {
 var guineaPig = document.getElementById("guinea-pig")
 
 function toggleClass (newClass) {
-  guineaPig.classList.toggle(newClass)
+  //guineaPig.classList.toggle(newClass)
+  guineaPig.className = newClass;
+  //console.log("guineaPig.classList", guineaPig.className)
   console.log("guineaPig.classList", guineaPig.classList)
 }
 
@@ -102,5 +104,21 @@ document.getElementById("add-rounding").addEventListener("click", function() {
   elements in one function.
  */
 document.querySelector("body").addEventListener("click", function(event) {
-    console.log("You clicked on the body of the DOM")
+    console.log(event);
+    if (event.target.classList.contains('article-section')) {
+      // poke();
+      alert("You clicked on the article of the DOM")
+    }
 })
+
+const myFriendElems  = document.getElementsByClassName('friends');
+
+// myFriendElems = []
+
+for (let i = 0; i < myFriendElems.length; i++) {
+  const element = myFriendElems[i];
+  
+  element.addEventListener('click', poke);
+}
+
+
