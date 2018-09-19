@@ -20,16 +20,24 @@ const activateDeletes = () => {
   }
 }
 
+// document.querySelector("body").addEventListener("click", function(event) {
+//   if (event.target.classList.contains('deleteButton')) {
+//     const buttonIClicked = event.target;
+//       const cardToDelete = buttonIClicked.parentNode.parentNode;
+//       cardToDelete.remove();
+//   }
+// })
+
 const printToDom = (stringToPrint, whereToPrint) => {
   document.getElementById(whereToPrint).innerHTML += stringToPrint;
 }
 
 const buildNewToDoCard = (toDo, notes) => {
-  let domString = `<div class="card" style="width: 18rem;">
+  let domString = `<div class="card w-25 m-2 ">
   <div class="card-body">
     <h5 class="card-title">${toDo}</h5>
     <p class="card-text">${notes}</p>
-    <button href="#" class="btn btn-primary deleteButton" id=${counter}>Delete this shit.</button>
+    <button href="#" class="btn btn-danger deleteButton" id=${counter}>Delete this shit.</button>
   </div>
 </div>`;
   counter ++;
@@ -37,7 +45,13 @@ const buildNewToDoCard = (toDo, notes) => {
   activateDeletes();
 }
 
-submitToDoButtonElem.addEventListener("click", (e) => {
+// submitToDoButtonElem.addEventListener("click", (e) => {
+//   e.preventDefault();
+
+//   buildNewToDoCard(toDoInputElem.value, notesInputElem.value);
+// });
+
+document.getElementsByTagName('form')[0].addEventListener("submit", (e) => {
   e.preventDefault();
 
   buildNewToDoCard(toDoInputElem.value, notesInputElem.value);
